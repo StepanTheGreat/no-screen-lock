@@ -1,0 +1,20 @@
+[package]
+name = "no-screen-lock"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+winapi = "0.3.9"
+tokio = {version = "1.22.0", features = ["full"]}
+subprocess = { git = "https://github.com/hniksic/rust-subprocess" }
+
+[target.'cfg(windows)'.build-dependencies]
+winres = "0.1"
+
+[profile.release]
+strip = true
+lto = true
+codegen-units = 1
+panic = "abort"
